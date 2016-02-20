@@ -15,7 +15,7 @@ do
   filesize=$(stat -c%s "$file")
   elem=`echo $file | perl -ne 'my ($dt) = $_ =~ /(\d+\-\d+\-\d+)\.log$/; print $dt;'`;
   file_ts=$(date +%s -d "$elem")
-  if  ((file_ts + min_period*24*3600 < current_ts))
+  if  ((file_ts + min_period_days*24*3600 < current_ts))
   then
     echo "REMOVING: $file";
     `rm $log_directory$file`
